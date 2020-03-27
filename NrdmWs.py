@@ -1,5 +1,6 @@
-import sys
 import datetime
+import sys
+
 from zeep import Client
 from zeep.wsse.username import UsernameToken
 
@@ -54,14 +55,10 @@ class NrdmWs:
     def getStateLevelCompletion(self, state):
         return self.client.service.getStateLevelCompletion(state)
 
-    def getSpatialSeriesByRangeAndRegionType(self, start, end, category, region_type, region, region_return_type, normalize):
-        return self.client.service.getSpatialSeriesByRangeAndRegionType(start,
-                                                                        end,
-                                                                        region_type,
-                                                                        region,
-                                                                        region_return_type,
-                                                                        category,
-                                                                        self.username,
+    def getSpatialSeriesByRangeAndRegionType(self, start, end, category, region_type, region, region_return_type,
+                                             normalize):
+        return self.client.service.getSpatialSeriesByRangeAndRegionType(start, end, region_type, region,
+                                                                        region_return_type, category, self.username,
                                                                         normalize)
 
 
@@ -71,8 +68,8 @@ def main():
     nrdmWs = NrdmWs(username, password)
     print(nrdmWs.isAlive())
     print(nrdmWs.getStateLevelCompletion("PA"))
-    print(nrdmWs.getSpatialSeriesByRangeAndRegionType(datetime.date(2020,3,1),
-                                                      datetime.date(2020,3,2),
+    print(nrdmWs.getSpatialSeriesByRangeAndRegionType(datetime.date(2020, 3, 1),
+                                                      datetime.date(2020, 3, 2),
                                                       nrdmWs.category['Cough/Cold'],
                                                       nrdmWs.region_type['state'],
                                                       "PA",
